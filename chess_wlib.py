@@ -216,7 +216,7 @@ def game(var='Standart', level='r'):
     elif var == 'Horde':
         b = chess.variant.HordeBoard()
     elif var == 'Racing':
-        b = chess.variant.HordeBoard()
+        b = chess.variant.RacingKingsBoard()
     draw_board(a, n)
     update_board(b, n)
     while running:
