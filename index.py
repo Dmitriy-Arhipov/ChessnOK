@@ -1,5 +1,5 @@
 import pygame as pg
-from widgets import SButton, AnimatedSprite, load_image
+from widgets import SButton, load_image
 from chess_wlib import game
 
 var, level = 'Standart', 'r'
@@ -12,28 +12,27 @@ def play():
         level = 'r'
     game(var, level)
 
-
-def st():
+def Standart():
     global var
     var = 'Standart'
 
 
-def anti():
+def Antichess():
     global var
     var = 'Antichess'
 
 
-def atom():
+def Atomic():
     global var
     var = 'Atomic'
 
 
-def race():
+def Racing():
     global var
     var = 'Racing'
 
 
-def hrd():
+def Horde():
     global var
     var = 'Horde'
 
@@ -70,20 +69,17 @@ def main():
     pg.mixer.music.load('music/audio.ogg')
     pg.mixer.music.play()
     black, white = (180, 140, 100), (240, 220, 180)
-    # Та самая анимация...
-    animated_bt = pg.sprite.Group()
-    anim = AnimatedSprite(animated_bt, load_image("figures/anim.png"), 3, 1, 10, 10)
     # Кнопки выбора
     bts = pg.sprite.Group()
     ps = SButton(bts, image='buttons/play.png', function=play, pos=(360, 650))
     hnd = SButton(bts, image='buttons/р.png', function=hand, pos=(300, 100))
     l1 = SButton(bts, image='buttons/1.png', function=lvl1, pos=(360, 100))
     l2 = SButton(bts, image='buttons/2.png', function=lvl2, pos=(420, 100))
-    std = SButton(bts, image='buttons/st.png', function=st, pos=(310, 160))
-    antic = SButton(bts, image='buttons/anti.png', function=anti, pos=(310, 260))
-    atomic = SButton(bts, image='buttons/atom.png', function=atom, pos=(310, 360))
-    racing = SButton(bts, image='buttons/race.png', function=race, pos=(310, 460))
-    horde = SButton(bts, image='buttons/hrd.png', function=hrd, pos=(310, 560))
+    std = SButton(bts, image='buttons/Standart.png', function=Standart, pos=(310, 160))
+    antic = SButton(bts, image='buttons/Antichess.png', function=Antichess, pos=(310, 260))
+    atomic = SButton(bts, image='buttons/Atomic.png', function=Atomic, pos=(310, 360))
+    racing = SButton(bts, image='buttons/Racing.png', function=Racing, pos=(310, 460))
+    horde = SButton(bts, image='buttons/Horde.png', function=Horde, pos=(310, 560))
     # Текстовая анимация
     font = pg.font.Font(None, 50)
     text = font.render(stringtxt, True, (0, 0, 0))
@@ -114,8 +110,6 @@ def main():
             bts.update(pg.event.get())
             text = font.render(stringtxt[i], True, (0, 0, 0))
             screen.blit(text, (text_x + (font.size(stringtxt[:i])[0]), text_y))
-            animated_bt.draw(screen)
-            animated_bt.update()
             pg.display.update()
             clock.tick(5)
     pg.display.flip()

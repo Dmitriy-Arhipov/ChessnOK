@@ -3,7 +3,7 @@ from csv import DictReader, DictWriter
 import pygame as pg
 import chess
 import chess.variant
-from widgets import SButton, Figure, load_image, ParticleSystem
+from widgets import SButton, Figure, load_image
 import stockfish
 import os
 import sys
@@ -125,7 +125,6 @@ def draw_title(stringtxt):
     pg.display.set_caption(stringtxt)
     pg.display.set_icon(load_image('app.ico'))
     bts = pg.sprite.Group()
-    prtcls = pg.sprite.Group()
     running = True
     black, white = (180, 140, 100), (240, 220, 180)
     cnt, i = 0, 0
@@ -158,8 +157,6 @@ def draw_title(stringtxt):
             screen.blit(ms, (ms_x, ms_y))
             bts.update(pg.event.get())
             bts.draw(screen)
-            ps = ParticleSystem(prtcls, (random.randint(10, size[0] - 10), 10), 3, (-2, 2), 'figures/wP.png')
-            ps.update(screen)
             pg.display.update()
     pg.display.flip()
 
@@ -257,8 +254,6 @@ def game(var='Standart', level='r'):
             text_h = text.get_height()
             pg.draw.rect(screen, white, (text_x - 10, text_y - 10, text_w + 20, text_h + 20))
             screen.blit(text, (text_x, text_y))
-            ps = ParticleSystem(prtcls, (random.randint(10, size[0] - 10), 10), 3, (-2, 2), 'figures/wP.png')
-            ps.update(screen)
             pg.display.flip()
             for event in pg.event.get():
                 if event.type == pg.QUIT:
